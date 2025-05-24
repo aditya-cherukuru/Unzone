@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Coins, Flame, Users, Leaf, Flower, Quote } from "lucide-react";
+import { Coins, Flame, Users, Leaf, Flower, Quote, User, Settings, CheckCircle, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -7,13 +7,17 @@ import { useAuth } from "@/hooks/useAuth";
 import { api } from "@/lib/api";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
+import { CoachChat } from "@/components/CoachChat";
 import type { Challenge } from "@shared/schema";
 
 export function Home() {
-  const { user } = useAuth();
+  const { user, updateUserProfile } = useAuth();
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const [greeting, setGreeting] = useState("");
+  const [showCoach, setShowCoach] = useState(false);
+  const [currentChallenge, setCurrentChallenge] = useState<Challenge | null>(null);
+  const [challengeCompleted, setChallengeCompleted] = useState(false);
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -47,27 +51,25 @@ export function Home() {
 
   const acceptChallengeMutation = useMutation({
     mutationFn: (challengeId: number) => {
-      return api.challenges.update(challengeId, { isCompleted: true, completedAt: new Date() });
+      return api.challenges.update(challengeId, { isAccepted: true });
     },
-    onSuccess: () => {
-      toast({
-        title: "Challenge Accepted! 🎉",
-        description: "Great job stepping out of your comfort zone!",
-      });
+    onSuccess: (challenge) => {
+      setCurrentChallenge(challenge);
+      setChallengeCompleted(true);
+      setShowCoach(true);
       queryClient.invalidateQueries({ queryKey: ["/api/challenges/user"] });
     }
   });
 
   const skipChallengeMutation = useMutation({
-    mutationFn: () => {
+    mutationFn: (challenge: Challenge) => {
+      setCurrentChallenge(challenge);
+      setChallengeCompleted(false);
+      setShowCoach(true);
       if (!user) throw new Error("User not found");
       return api.challenges.generate(user.id);
     },
     onSuccess: () => {
-      toast({
-        title: "New challenge generated",
-        description: "Here's another opportunity to grow!",
-      });
       queryClient.invalidateQueries({ queryKey: ["/api/challenges/user"] });
     }
   });
@@ -80,8 +82,17 @@ export function Home() {
     acceptChallengeMutation.mutate(challengeId);
   };
 
-  const handleSkipChallenge = () => {
-    skipChallengeMutation.mutate();
+  const handleSkipChallenge = (challenge: Challenge) => {
+    skipChallengeMutation.mutate(challenge);
+  };
+
+  const handleCoinsAwarded = async (coins: number) => {
+    if (user) {
+      await updateUserProfile({ 
+        coins: (user.coins || 0) + coins,
+        totalChallenges: (user.totalChallenges || 0) + (challengeCompleted ? 1 : 0)
+      });
+    }
   };
 
   if (!user) {
@@ -94,23 +105,40 @@ export function Home() {
 
   return (
     <div className="flex-1 overflow-y-auto">
-      {/* Header */}
+      {/* Header with Profile & Settings */}
       <div className="garden-bg px-6 pt-12 pb-8">
         <div className="flex justify-between items-start mb-6">
-          <div>
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-white hover:bg-white/20 p-2 rounded-full"
+          >
+            <User size={20} />
+          </Button>
+          
+          <div className="text-center flex-1 mx-4">
             <p className="text-white/80 text-sm">{greeting}</p>
             <h1 className="text-white text-2xl font-bold">{user.name}</h1>
-          </div>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-1 bg-white/20 px-3 py-1 rounded-full">
-              <Coins className="text-yellow-300 text-sm" size={16} />
-              <span className="text-white font-semibold text-sm">{user.coins || 0}</span>
+            
+            <div className="flex items-center justify-center space-x-4 mt-3">
+              <div className="flex items-center space-x-1 bg-white/20 px-3 py-1 rounded-full">
+                <Coins className="text-yellow-300 text-sm" size={16} />
+                <span className="text-white font-semibold text-sm">{user.coins || 0}</span>
+              </div>
+              <div className="flex items-center space-x-1 bg-white/20 px-3 py-1 rounded-full">
+                <Flame className="text-orange-300 text-sm" size={16} />
+                <span className="text-white font-semibold text-sm">{user.streak || 0}</span>
+              </div>
             </div>
-            <div className="flex items-center space-x-1 bg-white/20 px-3 py-1 rounded-full">
-              <Flame className="text-orange-300 text-sm" size={16} />
-              <span className="text-white font-semibold text-sm">{user.streak || 0}</span>
-            </div>
           </div>
+          
+          <Button
+            variant="ghost"
+            size="sm"
+            className="text-white hover:bg-white/20 p-2 rounded-full"
+          >
+            <Settings size={20} />
+          </Button>
         </div>
         
         {/* Garden Preview */}
