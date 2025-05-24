@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { BottomNavigation } from "./BottomNavigation";
+import { NewBottomNavigation } from "./NewBottomNavigation";
 import { Home } from "@/pages/Home";
 import { Garden } from "@/pages/Garden";
-import { Journal } from "@/pages/Journal";
+import { ProgressPage } from "@/pages/Progress";
 import { Community } from "@/pages/Community";
-import { Profile } from "@/pages/Profile";
+import { Coach } from "@/pages/Coach";
 
 export function MainApp() {
   const [activeTab, setActiveTab] = useState("home");
@@ -13,14 +13,14 @@ export function MainApp() {
     switch (activeTab) {
       case "home":
         return <Home />;
+      case "progress":
+        return <ProgressPage />;
       case "garden":
         return <Garden />;
-      case "journal":
-        return <Journal />;
       case "community":
         return <Community />;
-      case "profile":
-        return <Profile />;
+      case "coach":
+        return <Coach />;
       default:
         return <Home />;
     }
@@ -31,7 +31,7 @@ export function MainApp() {
       <div className="flex-1 overflow-hidden">
         {renderContent()}
       </div>
-      <BottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
+      <NewBottomNavigation activeTab={activeTab} onTabChange={setActiveTab} />
     </div>
   );
 }

@@ -214,7 +214,7 @@ export function Home() {
                 </Button>
                 <Button
                   variant="outline"
-                  onClick={handleSkipChallenge}
+                  onClick={() => handleSkipChallenge(todayChallenge)}
                   disabled={skipChallengeMutation.isPending}
                   className="px-6 hover:bg-gray-50 transition-all duration-300"
                 >
@@ -253,6 +253,17 @@ export function Home() {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Coach Chat Modal */}
+      {currentChallenge && (
+        <CoachChat
+          isOpen={showCoach}
+          onClose={() => setShowCoach(false)}
+          challengeTitle={currentChallenge.title}
+          challengeCompleted={challengeCompleted}
+          onCoinsAwarded={handleCoinsAwarded}
+        />
+      )}
     </div>
   );
 }
