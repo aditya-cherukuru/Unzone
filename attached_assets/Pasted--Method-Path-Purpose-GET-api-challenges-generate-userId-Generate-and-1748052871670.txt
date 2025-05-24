@@ -1,0 +1,55 @@
+| Method & Path | Purpose |
+| --- | --- |
+| `GET /api/challenges/generate/{userId}` | Generate and save a new challenge for the given user. |
+|  |  |
+|  |  |
+| `GET /api/challenges/{id}` | Retrieve a challenge by its ID. |
+| `GET /api/challenges/user/{userId}` | Get all challenges for a specific user. |
+| `GET /api/challenges/topic/{topic}` | Get challenges by topic. |
+| `GET /api/challenges/date?date=yyyy-MM-dd` | Get challenges created on a specific date. |
+| `GET /api/challenges/difficulty/{difficulty}` | Get challenges filtered by difficulty (EASY, MEDIUM, HARD). |
+| `GET /api/challenges/completed/{isCompleted}` | Get completed or not-completed challenges. |
+| `GET /api/challenges` | Get all challenges in the system. |
+| `POST /api/challenges` | Create a new challenge from input data. |
+| `PUT /api/challenges/{id}` | Update an existing challenge by ID. |
+| `DELETE /api/challenges/{id}` | Delete a challenge by ID. |
+
+journals
+
+| Method & Path | Purpose |
+| --- | --- |
+| `GET /api/journals/{id}` | Get a specific journal by its ID. |
+| `GET /api/journals/user/{userId}` | Get all journals written by a specific user. |
+| `GET /api/journals/date?date=yyyy-MM-dd` | Get a journal written on a specific date. |
+| `GET /api/journals` | Get all journals in the system. |
+| `POST /api/journals` | Create a new journal (requires a `JournalInput` in the request body). |
+| `PUT /api/journals/{id}` | Update an existing journal with new content. |
+| `DELETE /api/journals/{id}` | Delete a journal by its ID. |
+
+journal summary
+
+| Method & Path | Purpose |
+| --- | --- |
+| `GET /api/journal-summaries/{id}` | Get a specific journal summary by its ID. |
+| `GET /api/journal-summaries/user/{userId}` | Get all journal summaries written by a specific user. |
+| `GET /api/journal-summaries/journal/{journalId}` | Get the summary associated with a specific journal. |
+| `GET /api/journal-summaries/date?date=yyyy-MM-dd` | Get the journal summary for a specific date. |
+| `GET /api/journal-summaries/mood/{moodTag}` | Get summaries filtered by mood tag (e.g., HAPPY, SAD, etc.). |
+| `GET /api/journal-summaries` | Get a list of all journal summaries. |
+| `POST /api/journal-summaries` | Create a new journal summary (input needed in request body). |
+| `PUT /api/journal-summaries/{id}` | Update an existing journal summary with new input. |
+| `DELETE /api/journal-summaries/{id}` | Delete a journal summary by its ID. |
+
+user 
+
+| Method & Path | Purpose |
+| --- | --- |
+| `POST /api/users/{userId}/assign-topic-from-answers` | Assign a topic to the user based on answers to 5 questions (via LLM). |
+| `GET /api/users/{id}` | Get a user by their ID. |
+| `POST /api/users/admin/reset-daily-stats` | Reset all users’ daily stats (e.g., skip count, reward status). Admin endpoint. |
+| `GET /api/users/username/{username}` | Get a user by their username. |
+| `GET /api/users/email/{email}` | Get a user by their email. |
+| `GET /api/users` | Get a list of all users. |
+| `POST /api/users` | Create a new user with the given input. |
+| `PUT /api/users/{id}` | Update an existing user by ID. |
+| `DELETE /api/users/{id}` | Delete a user by ID. |
