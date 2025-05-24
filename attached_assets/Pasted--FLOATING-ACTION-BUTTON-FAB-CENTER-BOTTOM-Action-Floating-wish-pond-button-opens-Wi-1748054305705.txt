@@ -1,0 +1,51 @@
+💮 FLOATING ACTION BUTTON (FAB – CENTER BOTTOM)
+	Action
+ Floating  wish pond button opens:	
+
+
+🌠 “Wish Pond” – The Soul of the Growth Garden
+“Every coin holds a wish. Every ripple remembers your courage.”
+________________________________________
+🌳 Concept Summary
+The Garden isn't just a display of progress. It becomes a magical, evolving sanctuary. The Pond is the heart. It’s where users toss Courage Coins attached with their dreams, affirmations, or reflections. As coins are tossed, the garden blooms — not randomly, but in reflection of who the user is becoming.
+________________________________________
+🎨 Visual Layout (Screen Design)
+📱 Garden View (Center FAB → Wish Pond)
+🌲🌿 Tree      Tree        Tree
+          🌼 Butterfly         🐦 Bird
+               🌊 🪙 WISH POND
+             (animated, mystical)
+
+  [Tap Coin] → "Make a Wish" 💬
+
+        [Throw Into Pond]  ⬆️ (swipe up)
+
+      🌸💫✨ Ripples + sound + aura
+
+
+🌺 Pond fills gradually – reflects the sky
+
+🦋 As garden grows:
+    - Fireflies at night
+    - Birds appear
+    - Trees blossom with glowing fruits
+    - A bridge to the “unknown side” forms
+________________________________________
+🔮 Core Features of the Wish Pond
+Feature	Description
+🪙 Courage Coin Toss	User completes a discomfort task → gets a unique animated coin (based on difficulty). Coin is imbued with a wish or feeling they type (or say).
+💭 Make a Wish Prompt	Gemini asks: “What did this task mean to you?” → user writes 1–2 lines, optional emoji.
+🌊 Throwing the Coin	Swiping up or dragging → coin spins with light + splash animation into the pond
+🌈 Visual Memory	A ripple forms → shows a short reflection (e.g., “Faced my fear of rejection”)
+🪞 Reflections Area	Tap water’s surface → see old memories hover over the pond (like stars/mirror)
+🌳 Garden Evolves	- Trees bloom based on emotion types (e.g., confidence = oak, healing = willow)
+- Spirit creatures appear (fox of courage, owl of clarity, etc.)
+🌉 Bridge of Becoming	Each big win builds a step on the bridge to your “Future Self” island
+📖 Past Gardens Archive	Users can swipe through previous weeks: gardens saved like memory books
+⛅ Dynamic Time	Garden changes with time of day (morning = birds, night = fireflies & stars)
+________________________________________
+🎁 Bonus Motivational Layer
+Element	Description
+🕯️ Wishing Ritual	Gemini offers rituals: “Close your eyes. Breathe. Now toss the coin.”
+🐚 Garden Sounds	Relaxing audio: pond ripple, wind chimes, soft whispers of past affirmations
+🧙‍♂️ Garden Guardian (optional)	A mystical character who shows up with wisdom as the user levels up (e.g., an old tree spirit)
