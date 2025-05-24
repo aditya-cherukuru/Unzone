@@ -6,7 +6,11 @@ import { Button } from "@/components/ui/button";
 import { useAuth } from "@/hooks/useAuth";
 import { WishPond } from "@/components/WishPond";
 
-export function Garden() {
+interface GardenProps {
+  onBack?: () => void;
+}
+
+export function Garden({ onBack }: GardenProps = {}) {
   const { user } = useAuth();
   const [showWishPond, setShowWishPond] = useState(false);
 
@@ -53,7 +57,7 @@ export function Garden() {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => window.history.back()}
+          onClick={() => onBack?.()}
           className="absolute top-4 left-4 text-white hover:bg-white/20 z-20"
         >
           <ArrowLeft size={20} />

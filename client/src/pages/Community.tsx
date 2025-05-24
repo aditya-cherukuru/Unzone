@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useAuth } from "@/hooks/useAuth";
 
-export function Community() {
+interface CommunityProps {
+  onBack?: () => void;
+}
+
+export function Community({ onBack }: CommunityProps = {}) {
   const { user } = useAuth();
 
   // Mock leaderboard data

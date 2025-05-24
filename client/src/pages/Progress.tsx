@@ -36,7 +36,7 @@ export function ProgressPage({ onBack }: ProgressPageProps) {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => onBack?.() || window.history.back()}
+          onClick={() => onBack?.()}
           className="absolute top-4 left-4 text-white hover:bg-white/20"
         >
           <ArrowLeft size={20} />

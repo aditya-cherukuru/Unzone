@@ -5,7 +5,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
 import { useAuth } from "@/hooks/useAuth";
 
-export function Coach() {
+interface CoachProps {
+  onBack?: () => void;
+}
+
+export function Coach({ onBack }: CoachProps = {}) {
   const { user } = useAuth();
   const [message, setMessage] = useState("");
   const [conversations, setConversations] = useState([
@@ -50,7 +54,7 @@ export function Coach() {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => window.history.back()}
+          onClick={() => onBack?.()}
           className="absolute top-4 left-4 text-white hover:bg-white/20"
         >
           <ArrowLeft size={20} />

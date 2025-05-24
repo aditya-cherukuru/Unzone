@@ -9,18 +9,22 @@ import { Coach } from "@/pages/Coach";
 export function MainApp() {
   const [activeTab, setActiveTab] = useState("home");
 
+  const handleBack = () => {
+    setActiveTab("home");
+  };
+
   const renderContent = () => {
     switch (activeTab) {
       case "home":
         return <Home />;
       case "progress":
-        return <ProgressPage />;
+        return <ProgressPage onBack={handleBack} />;
       case "garden":
-        return <Garden />;
+        return <Garden onBack={handleBack} />;
       case "community":
-        return <Community />;
+        return <Community onBack={handleBack} />;
       case "coach":
-        return <Coach />;
+        return <Coach onBack={handleBack} />;
       default:
         return <Home />;
     }
