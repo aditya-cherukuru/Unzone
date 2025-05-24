@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <title>UnZone - Mental Wellness App</title>
+    <meta name="description" content="Break free from your comfort zone with daily challenges that nurture personal growth and build lasting courage. Grow your virtual courage garden with UnZone." />
+    
+    <!-- Open Graph tags for social sharing -->
+    <meta property="og:title" content="UnZone - Grow Your Courage Garden" />
+    <meta property="og:description" content="Mental wellness app that uses daily comfort-zone-breaking challenges to grow a symbolic courage garden." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://unzone.app" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#46A094" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="UnZone" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2346A094'%3E%3Cpath d='M12 2L13.09 8.26L22 9L13.09 9.74L12 16L10.91 9.74L2 9L10.91 8.26L12 2Z'/%3E%3C/svg%3E" />
+    
+    <style>
+      /* Prevent flash of unstyled content */
+      .loading-screen {
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(135deg, #46A094 0%, #6BBD99 25%, #AECFA4 75%, #C4E8C2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .loading-screen.hidden {
+        display: none;
+      }
+      
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Hide body until React loads */
+      body:not(.react-loaded) #root {
+        opacity: 0;
+      }
+      
+      body.react-loaded #root {
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
+      }
+      
+      body.react-loaded .loading-screen {
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
+        pointer-events: none;
+      }
+      
+      /* Mobile-first responsive design */
+      html, body {
+        height: 100vh;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', system-ui, sans-serif;
+        background-color: #f8fafc;
+      }
+      
+      #root {
+        height: 100vh;
+        overflow: hidden;
+      }
+      
+      /* Ensure proper mobile touch interactions */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      
+      input, textarea, button {
+        -webkit-user-select: text;
+        user-select: text;
+      }
+      
+      /* Custom scrollbar for WebKit browsers */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #6BBD99;
+        border-radius: 2px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #46A094;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading screen -->
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- React app root -->
+    <div id="root"></div>
+    
+    <!-- Scripts -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- PWA Service Worker Registration -->
+    <script>
+      // Hide loading screen when React is ready
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.body.classList.add('react-loaded');
+          setTimeout(() => {
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) {
+              loadingScreen.classList.add('hidden');
+            }
+          }, 300);
+        }, 500);
+      });
+      
+      // Register service worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          // Note: Service worker file would need to be created for full PWA support
+          // navigator.serviceWorker.register('/sw.js');
+        });
+      }
+      
+      // Prevent zoom on iOS Safari
+      document.addEventListener('gesturestart', function (e) {
+        e.preventDefault();
+      });
+      
+      // Prevent double-tap zoom
+      let lastTouchEnd = 0;
+      document.addEventListener('touchend', function (event) {
+        const now = (new Date()).getTime();
+        if (now - lastTouchEnd <= 300) {
+          event.preventDefault();
+        }
+        lastTouchEnd = now;
+      }, false);
+      
+      // Handle viewport height changes on mobile (especially iOS)
+      function setViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      
+      setViewportHeight();
+      window.addEventListener('resize', setViewportHeight);
+      window.addEventListener('orientationchange', () => {
+        setTimeout(setViewportHeight, 100);
+      });
+    </script>
+    
+    <!-- This is a replit script which adds a banner on the top of the page when opened in development mode outside the replit environment -->
+    <script type="text/javascript" src="https://replit.com/public/js/replit-dev-banner.js"></script>
+  </body>
+</html>
