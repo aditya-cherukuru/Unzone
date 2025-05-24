@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TrendingUp, Calendar, Target, Award, BarChart3, ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/hooks/useAuth";
