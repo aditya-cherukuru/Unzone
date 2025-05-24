@@ -31,8 +31,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           const existingUser = await api.users.getByEmail(firebaseUser.email!);
           setUser(existingUser);
         } catch (error) {
-          // User doesn't exist in our system yet
-          setUser(null);
+          // User doesn't exist in our system yet, create them
+          try {
+            const newUser = await api.users.create({
+              firebaseUid: firebaseUser.uid,
+              email: firebaseUser.email!,
+              name: firebaseUser.displayName || firebaseUser.email!.split('@')[0],
+              username: firebaseUser.email!.split('@')[0] + Math.floor(Math.random() * 1000),
+              coins: 0,
+              streak: 0,
+              gardenLevel: 1,
+              totalChallenges: 0,
+              challengePreferences: [],
+              difficultyPreference: 2,
+              comfortProfile: null
+            });
+            setUser(newUser);
+          } catch (createError) {
+            console.error("Error creating user:", createError);
+            setUser(null);
+          }
         }
       } else {
         setFirebaseUser(null);
