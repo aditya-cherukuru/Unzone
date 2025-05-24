@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 interface NewBottomNavigationProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
+  onBack?: () => void;
 }
 
 export function NewBottomNavigation({ activeTab, onTabChange }: NewBottomNavigationProps) {

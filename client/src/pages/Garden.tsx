@@ -10,14 +10,12 @@ export function Garden() {
   const { user } = useAuth();
   const [showWishPond, setShowWishPond] = useState(false);
 
-  // Enhanced garden data with more magical elements
+  // Simplified, mature garden elements
   const gardenPlots = [
-    { type: "seedling", name: "Confidence Sprout", progress: 75, emoji: "🌱", color: "from-green-400 to-green-600" },
-    { type: "fern", name: "Courage Fern", progress: 50, emoji: "🌿", color: "from-emerald-400 to-emerald-600" },
-    { type: "blossom", name: "Bravery Blossom", progress: 100, emoji: "🌸", color: "from-pink-400 to-pink-600" },
-    { type: "empty", name: "Ready to plant", progress: 0, emoji: "🌰", color: "from-gray-300 to-gray-400" },
-    { type: "flower", name: "Growth Flower", progress: 80, emoji: "🌺", color: "from-purple-400 to-purple-600" },
-    { type: "tree", name: "Wisdom Tree", progress: 90, emoji: "🌳", color: "from-yellow-400 to-yellow-600" },
+    { type: "plant", name: "Confidence", progress: 75, color: "from-green-400 to-green-600" },
+    { type: "plant", name: "Courage", progress: 50, color: "from-emerald-400 to-emerald-600" },
+    { type: "plant", name: "Growth", progress: 100, color: "from-blue-400 to-blue-600" },
+    { type: "empty", name: "Available", progress: 0, color: "from-gray-300 to-gray-400" },
   ];
 
   if (!user) {
@@ -30,31 +28,37 @@ export function Garden() {
 
   return (
     <div className="h-full relative overflow-y-auto">
-      {/* Magical Garden Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-sky-300 via-blue-400 to-blue-500">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Trees with swaying animation */}
-          <div className="absolute top-8 left-4 text-6xl animate-tree-sway" style={{ animationDelay: "0s" }}>🌳</div>
-          <div className="absolute top-12 right-8 text-5xl animate-tree-sway" style={{ animationDelay: "2s" }}>🌲</div>
-          <div className="absolute top-6 left-1/3 text-4xl animate-tree-sway" style={{ animationDelay: "4s" }}>🌴</div>
+      {/* Sophisticated Garden Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-green-800 via-green-700 to-green-900">
+        {/* Dense Forest Background */}
+        <div className="absolute inset-0 overflow-hidden opacity-40">
+          {/* Dense tree coverage */}
+          <div className="absolute top-0 left-0 text-8xl text-green-900 animate-tree-sway" style={{ animationDelay: "0s" }}>🌲</div>
+          <div className="absolute top-4 left-12 text-7xl text-green-800 animate-tree-sway" style={{ animationDelay: "1s" }}>🌲</div>
+          <div className="absolute top-8 left-24 text-6xl text-green-900 animate-tree-sway" style={{ animationDelay: "2s" }}>🌲</div>
+          <div className="absolute top-0 right-0 text-8xl text-green-900 animate-tree-sway" style={{ animationDelay: "3s" }}>🌲</div>
+          <div className="absolute top-4 right-12 text-7xl text-green-800 animate-tree-sway" style={{ animationDelay: "4s" }}>🌲</div>
+          <div className="absolute top-8 right-24 text-6xl text-green-900 animate-tree-sway" style={{ animationDelay: "5s" }}>🌲</div>
           
-          {/* Flying Birds */}
-          <div className="absolute top-16 left-0 text-2xl animate-bird-fly" style={{ animationDelay: "1s" }}>🐦</div>
-          <div className="absolute top-20 left-0 text-xl animate-bird-fly" style={{ animationDelay: "3s" }}>🕊️</div>
-          
-          {/* Dancing Butterflies */}
-          <div className="absolute top-32 left-1/4 text-2xl animate-butterfly" style={{ animationDelay: "0.5s" }}>🦋</div>
-          <div className="absolute top-28 right-1/3 text-xl animate-butterfly" style={{ animationDelay: "2.5s" }}>🦋</div>
-          
-          {/* Floating Sparkles */}
-          <div className="absolute top-20 left-1/2 text-xl animate-sparkle" style={{ animationDelay: "0s" }}>✨</div>
-          <div className="absolute top-36 right-1/5 text-lg animate-sparkle" style={{ animationDelay: "1.5s" }}>💫</div>
-          <div className="absolute top-44 left-1/6 text-sm animate-sparkle" style={{ animationDelay: "3s" }}>⭐</div>
+          {/* Middle layer trees */}
+          <div className="absolute top-16 left-8 text-5xl text-green-700 animate-tree-sway" style={{ animationDelay: "2s" }}>🌲</div>
+          <div className="absolute top-20 right-16 text-5xl text-green-700 animate-tree-sway" style={{ animationDelay: "6s" }}>🌲</div>
+          <div className="absolute top-24 left-20 text-4xl text-green-800 animate-tree-sway" style={{ animationDelay: "1s" }}>🌲</div>
+          <div className="absolute top-28 right-8 text-4xl text-green-800 animate-tree-sway" style={{ animationDelay: "7s" }}>🌲</div>
         </div>
       </div>
       
       <div className="relative z-10 p-6 pt-16">
+        {/* Back Button */}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => window.history.back()}
+          className="absolute top-4 left-4 text-white hover:bg-white/20 z-20"
+        >
+          <ArrowLeft size={20} />
+        </Button>
+
         <div className="text-center mb-8">
           <h1 className="font-display text-3xl font-bold text-white mb-2 drop-shadow-lg">Your Courage Garden</h1>
           <p className="text-white/90 drop-shadow">
@@ -62,31 +66,22 @@ export function Garden() {
           </p>
         </div>
         
-        {/* Enhanced Garden Grid with Color Coding */}
-        <div className="grid grid-cols-3 gap-4 mb-8">
+        {/* Simplified Garden Grid */}
+        <div className="grid grid-cols-2 gap-6 mb-8">
           {gardenPlots.map((plot, index) => (
             <Card 
               key={index}
-              className={`aspect-square bg-white/15 backdrop-blur-md border border-white/30 shadow-lg hover:shadow-xl transition-all duration-300 ${
+              className={`aspect-square bg-white/20 backdrop-blur-md border border-white/30 shadow-lg transition-all duration-300 ${
                 plot.type === "empty" 
-                  ? "border-dashed border-white/20 hover:border-white/40" 
+                  ? "border-dashed border-white/20" 
                   : "hover:scale-105"
               }`}
             >
-              <CardContent className="p-4 flex flex-col items-center justify-center h-full">
-                <div 
-                  className={`text-3xl mb-2 transition-transform duration-300 ${
-                    plot.type !== "empty" 
-                      ? "animate-float hover:scale-110" 
-                      : "opacity-60 hover:opacity-80"
-                  }`}
-                  style={{ 
-                    animationDelay: `${index * 0.7}s` 
-                  }}
-                >
-                  {plot.emoji}
+              <CardContent className="p-6 flex flex-col items-center justify-center h-full">
+                <div className="w-12 h-12 rounded-full bg-white/10 mb-4 flex items-center justify-center">
+                  <div className={`w-8 h-8 rounded-full bg-gradient-to-r ${plot.color}`}></div>
                 </div>
-                <p className={`text-xs text-center mb-2 font-medium ${
+                <p className={`text-sm text-center mb-3 font-medium ${
                   plot.type === "empty"
                     ? "text-white/60"
                     : "text-white/90"
@@ -95,7 +90,7 @@ export function Garden() {
                 </p>
                 {plot.progress > 0 && plot.type !== "empty" && (
                   <div className="w-full">
-                    <div className="w-full bg-white/20 rounded-full h-2 mb-1">
+                    <div className="w-full bg-white/20 rounded-full h-2 mb-2">
                       <div 
                         className={`h-full rounded-full bg-gradient-to-r ${plot.color} transition-all duration-500`}
                         style={{ width: `${plot.progress}%` }}
@@ -109,30 +104,28 @@ export function Garden() {
           ))}
         </div>
         
-        {/* Magical Wish Pond in Garden */}
+        {/* Large Sophisticated Wish Pond */}
         <div className="flex justify-center mb-8">
           <div className="relative">
             <div 
-              className="w-40 h-24 rounded-full bg-gradient-to-br from-blue-400 via-teal-400 to-cyan-500 animate-pond-glow shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300"
-              style={{
-                background: `radial-gradient(ellipse at center, 
-                  hsl(var(--pond-blue)) 0%, 
-                  hsl(var(--pond-teal)) 40%, 
-                  hsl(var(--pond-aqua)) 70%, 
-                  hsl(var(--primary-400)) 100%)`
-              }}
+              className="w-72 h-48 rounded-full bg-gradient-to-br from-blue-600 via-teal-600 to-cyan-700 shadow-2xl cursor-pointer hover:scale-105 transition-transform duration-300 border-4 border-white/20"
               onClick={() => setShowWishPond(true)}
             >
-              {/* Water Surface Effects */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-white/15 rounded-full animate-pulse"></div>
+              {/* Realistic Water Surface */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-blue-900/30 rounded-full"></div>
+              <div className="absolute inset-2 bg-gradient-to-br from-transparent via-white/10 to-transparent rounded-full animate-pulse"></div>
               
-              {/* Floating Elements */}
-              <div className="absolute top-1 left-4 text-sm animate-float" style={{ animationDelay: "0s" }}>🍃</div>
-              <div className="absolute bottom-1 right-6 text-xs animate-float" style={{ animationDelay: "2s" }}>🌸</div>
-              <div className="absolute top-2 right-2 text-xs animate-float" style={{ animationDelay: "1s" }}>💐</div>
+              {/* Minimal, elegant floating elements */}
+              <div className="absolute top-6 left-8 w-2 h-2 bg-green-400 rounded-full animate-float opacity-70" style={{ animationDelay: "0s" }}></div>
+              <div className="absolute bottom-8 right-12 w-1 h-1 bg-green-300 rounded-full animate-float opacity-60" style={{ animationDelay: "2s" }}></div>
+              
+              {/* Ripple effects */}
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-white/20 rounded-full animate-ping opacity-30"></div>
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 border border-white/10 rounded-full animate-ping opacity-20" style={{ animationDelay: "1s" }}></div>
             </div>
-            <div className="text-center mt-2">
-              <p className="text-white/90 text-sm font-medium drop-shadow">Wish Pond</p>
+            <div className="text-center mt-4">
+              <p className="text-white/90 text-lg font-medium drop-shadow">Reflection Pond</p>
+              <p className="text-white/70 text-sm">Tap to make a wish</p>
             </div>
           </div>
         </div>

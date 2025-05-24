@@ -1,10 +1,14 @@
 import { useState } from "react";
-import { TrendingUp, Calendar, Target, Award, BarChart3 } from "lucide-react";
+import { TrendingUp, Calendar, Target, Award, BarChart3, ArrowLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useAuth } from "@/hooks/useAuth";
 
-export function ProgressPage() {
+interface ProgressPageProps {
+  onBack?: () => void;
+}
+
+export function ProgressPage({ onBack }: ProgressPageProps) {
   const { user } = useAuth();
 
   const weeklyProgress = [
@@ -27,7 +31,15 @@ export function ProgressPage() {
   return (
     <div className="h-full overflow-y-auto bg-gray-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white">
+      <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white relative">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onBack?.() || window.history.back()}
+          className="absolute top-4 left-4 text-white hover:bg-white/20"
+        >
+          <ArrowLeft size={20} />
+        </Button>
         <h1 className="text-2xl font-bold mb-2">Your Progress</h1>
         <p className="text-white/90">Track your growth journey</p>
       </div>

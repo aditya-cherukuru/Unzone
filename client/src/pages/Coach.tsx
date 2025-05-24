@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle, Send, Sparkles, Heart, Brain } from "lucide-react";
+import { MessageCircle, Send, Sparkles, Heart, Brain, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent } from "@/components/ui/card";
@@ -46,8 +46,16 @@ export function Coach() {
   return (
     <div className="h-full flex flex-col bg-gradient-to-b from-purple-50 to-pink-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-white">
-        <div className="flex items-center space-x-3">
+      <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-6 text-white relative">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => window.history.back()}
+          className="absolute top-4 left-4 text-white hover:bg-white/20"
+        >
+          <ArrowLeft size={20} />
+        </Button>
+        <div className="flex items-center space-x-3 ml-12">
           <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
             <MessageCircle size={24} />
           </div>
