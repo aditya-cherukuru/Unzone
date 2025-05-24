@@ -8,9 +8,13 @@ interface WishPondProps {
   isOpen: boolean;
   onClose: () => void;
   userCoins: number;
+  onCoinsChanged: (newCoins: number) => void;
 }
 
-export function WishPond({ isOpen, onClose, userCoins }: WishPondProps) {
+export function WishPond({ isOpen, onClose, userCoins, onCoinsChanged }: WishPondProps) {
+  const [showSplash, setShowSplash] = useState(false);
+  const [showGlow, setShowGlow] = useState(false);
+  const [coinTossing, setCoinTossing] = useState(false);
   const [wish, setWish] = useState("");
   const [isAnimating, setIsAnimating] = useState(false);
   const [ripples, setRipples] = useState<Array<{ id: number; x: number; y: number }>>([]);

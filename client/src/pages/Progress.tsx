@@ -30,9 +30,9 @@ export function ProgressPage({ onBack }: ProgressPageProps) {
   ];
 
   return (
-    <div className="h-full overflow-y-auto bg-gray-50">
+    <div className="h-full overflow-y-auto" style={{ backgroundColor: '#C4E8C2' }}>
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-6 text-white relative">
+      <div className="bg-gradient-to-r from-[#46A094] to-[#6BBD99] p-6 text-white relative">
         <Button
           variant="ghost"
           size="sm"
@@ -41,7 +41,7 @@ export function ProgressPage({ onBack }: ProgressPageProps) {
         >
           <ArrowLeft size={20} />
         </Button>
-        <h1 className="text-2xl font-bold mb-2">Your Progress</h1>
+        <h1 className="text-2xl font-bold mb-2 ml-12">Your Progress</h1>
         <p className="text-white/90">Track your growth journey</p>
       </div>
 

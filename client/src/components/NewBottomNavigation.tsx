@@ -17,7 +17,7 @@ export function NewBottomNavigation({ activeTab, onTabChange }: NewBottomNavigat
   ];
 
   return (
-    <div className="relative bg-gradient-to-t from-gray-50 to-white border-t border-gray-100 shadow-2xl px-4 pb-4 pt-2">
+    <div className="relative bg-gradient-to-t from-[#46A094] to-[#6BBD99] border-t border-[#AECFA4]/30 shadow-2xl px-4 pb-4 pt-2">
       {/* Navigation Items */}
       <div className="flex items-center justify-between">
         {navItems.map((item) => {
@@ -60,27 +60,27 @@ export function NewBottomNavigation({ activeTab, onTabChange }: NewBottomNavigat
               onClick={() => onTabChange(item.id)}
               className={`
                 flex flex-col items-center space-y-1 p-3 h-16 rounded-xl transition-all duration-300 
-                hover:bg-gray-50 focus:outline-none relative
+                hover:bg-white/20 focus:outline-none relative
                 ${activeTab === item.id 
-                  ? "text-emerald-600 bg-emerald-50/50" 
-                  : "text-gray-400 hover:text-gray-600"
+                  ? "text-white bg-white/20" 
+                  : "text-white/70 hover:text-white"
                 }
               `}
             >
               <item.icon 
                 size={22} 
                 className={`transition-all duration-300 ${
-                  activeTab === item.id ? "scale-110 text-emerald-600" : ""
+                  activeTab === item.id ? "scale-110 text-white" : ""
                 }`}
               />
               <span className={`text-xs font-medium transition-all duration-300 ${
-                activeTab === item.id ? "font-semibold text-emerald-700" : ""
+                activeTab === item.id ? "font-semibold text-white" : ""
               }`}>
                 {item.label}
               </span>
               {/* Enhanced Active indicator */}
               {activeTab === item.id && (
-                <div className="absolute bottom-1 w-6 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full shadow-sm"></div>
+                <div className="absolute bottom-1 w-6 h-1 bg-gradient-to-r from-white to-white/80 rounded-full shadow-sm"></div>
               )}
             </button>
           );
