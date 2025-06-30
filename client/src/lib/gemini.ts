@@ -1,4 +1,4 @@
-const GEMINI_API_KEY = 'AIzaSyDau04tjtsJVImN_ZYDXtDU8rXNQ5JWW7Q';
+const GEMINI_API_KEY = 'YOUR_API_KEY';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
 
 export interface CoachResponse {
